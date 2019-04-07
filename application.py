@@ -541,7 +541,7 @@ class WebSocketsWorker(QtCore.QThread):
 
 	class BroadcastServerFactory(WebSocketServerFactory):
 		def __init__(self, url, debug=False, debugCodePaths=False):
-			WebSocketServerFactory.__init__(self, url, debug=debug, debugCodePaths=debugCodePaths)
+			WebSocketServerFactory.__init__(self, url)
 			self.clients = []
 			self.tickcount = 0
 			#self.tick()
@@ -575,7 +575,7 @@ class WebSocketsWorker(QtCore.QThread):
 
 	def __init__(self):
 		QtCore.QThread.__init__(self)
-		self.factory = self.BroadcastServerFactory("ws://localhost:9000", debug=False, debugCodePaths=False)
+		self.factory = self.BroadcastServerFactory("ws://localhost:9000", debug=False)
 
 	def run(self):
 		self.factory.protocol = self.BroadcastServerProtocol
